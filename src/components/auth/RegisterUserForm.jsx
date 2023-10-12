@@ -4,6 +4,7 @@ import "../../assets/styles/register.css";
 export const RegisterUserForm = ({
   handleSubmit,
   name,
+  lastName,
   email,
   password,
   password2,
@@ -29,9 +30,9 @@ export const RegisterUserForm = ({
           />
           <input
             type="text"
-            name="last-name"
-            placeholder={errors.name ? 'Last Name' : 'Last Name'}
-            value={name}
+            name="lastName"
+            placeholder={errors.lastName ? 'Last Name' : 'Last Name'}
+            value={lastName}
             onChange={handleLastNameChange}
             className={errors.lastName ? 'error' : ''}
           />
