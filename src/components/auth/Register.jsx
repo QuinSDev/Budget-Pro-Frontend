@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { RegisterUserForm } from "./RegisterUserForm";
+import { useNavigate } from "react-router-dom";
 
 export const Register = () => {
   const [name, setName] = useState("");
@@ -13,7 +14,7 @@ export const Register = () => {
     email: false,
     password: false,
     password2: false,
-  })
+  });
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -23,8 +24,8 @@ export const Register = () => {
 
   const handleLastNameChange = (e) => {
     setLastName(e.target.value);
-    setErrors({ ...errors, lastName: false});
-  }
+    setErrors({ ...errors, lastName: false });
+  };
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
     setErrors({ ...errors, email: false });
@@ -65,6 +66,8 @@ export const Register = () => {
     return isValid;
   };
 
+  const navigate = useNavigate();
+
   const handleSumbit = (event) => {
     event.preventDefault();
     const isValid = validationForm();
@@ -93,10 +96,8 @@ export const Register = () => {
       const contentType = peticion.headers.get("content-type");
       if (contentType && contentType.indexOf("application/json") !== -1) {
         const data = await peticion.json();
-        console.log(data)
         if (data.sucess) {
-          console.log("Usuario guardado:", data);
-          alert("Usuario guardado exitosamente");
+          navigate("/login");
         } else {
           console.error(data.respuesta);
           alert(data.respuesta);
@@ -116,19 +117,21 @@ export const Register = () => {
   };
 
   return (
-    <RegisterUserForm
-      handleSubmit={handleSumbit}
-      name={name}
-      lastName={lastName}
-      email={email}
-      password={password}
-      password2={password2}
-      handleNameChange={handleNameChange}
-      handleLastNameChange={handleLastNameChange}
-      handleEmailChange={handleEmailChange}
-      handlePasswordChange={handlePasswordChange}
-      handlePassword2Change={handlePassword2Change}
-      errors={errors}
-    />
+    <>
+      <RegisterUserForm
+        handleSubmit={handleSumbit}
+        name={name}
+        lastName={lastName}
+        email={email}
+        password={password}
+        password2={password2}
+        handleNameChange={handleNameChange}
+        handleLastNameChange={handleLastNameChange}
+        handleEmailChange={handleEmailChange}
+        handlePasswordChange={handlePasswordChange}
+        handlePassword2Change={handlePassword2Change}
+        errors={errors}
+      />
+    </>
   );
 };
