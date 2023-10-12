@@ -119,10 +119,12 @@ export const Register = () => {
     <RegisterUserForm
       handleSubmit={handleSumbit}
       name={name}
+      lastName={lastName}
       email={email}
       password={password}
       password2={password2}
       handleNameChange={handleNameChange}
+      handleLastNameChange={handleLastNameChange}
       handleEmailChange={handleEmailChange}
       handlePasswordChange={handlePasswordChange}
       handlePassword2Change={handlePassword2Change}
