@@ -1,5 +1,5 @@
 import React from "react";
-import "../../assets/styles/register.css";
+import "../../assets/styles/userForm.css";
 
 export const RegisterUserForm = ({
   handleSubmit,
