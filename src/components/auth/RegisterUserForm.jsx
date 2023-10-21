@@ -1,20 +1,26 @@
 import React from "react";
 import "../../assets/styles/userForm.css";
 
-export const RegisterUserForm = ({
-  handleSubmit,
-  name,
-  lastName,
-  email,
-  password,
-  password2,
-  handleNameChange,
-  handleLastNameChange,
-  handleEmailChange,
-  handlePasswordChange,
-  handlePassword2Change,
-  errors,
-}) => {
+/**
+ * Componente funcional que muestra el formulario de registro de usuarios.
+ * 
+ * @param {Object} props - Las propiedades del componente
+ * @param {Function} props.handleSubmit - Función para manejar el envío del formulario.
+ * @param {Object} props.formData - Los datos del formulario.
+ * @param {Function} props.handleChange - Función para manejar los cambios en los campos del formulario.
+ * @param {Object} props.errors - Los errores asociados a los campos del formulario. 
+ * @returns 
+ */
+export const RegisterUserForm = ({handleSubmit, formData, handleChange, errors}) => {
+  // Extrae los campos del objeto formData
+  const {
+    firstName,
+    lastName,
+    userName,
+    password,
+    confirmPassword,
+  } = formData;
+
   return (
     <main className="main">
       <div className="form-register">
@@ -23,42 +29,42 @@ export const RegisterUserForm = ({
           <input
             type="text"
             name="name"
-            placeholder={errors.name ? 'Name' : 'Name'}
-            value={name}
-            onChange={handleNameChange}
-            className={errors.name ? 'error' : ''}
+            placeholder={errors.firstName ? 'Name' : 'Name'}
+            value={firstName}
+            onChange={(e) => handleChange("firstName", e.target.value)}
+            className={errors.firstName ? 'error' : ''}
           />
           <input
             type="text"
             name="lastName"
             placeholder={errors.lastName ? 'Last Name' : 'Last Name'}
             value={lastName}
-            onChange={handleLastNameChange}
+            onChange={(e) => handleChange("lastName", e.target.value)}
             className={errors.lastName ? 'error' : ''}
           />
           <input
             type="email"
             name="email"
-            placeholder={errors.email ? 'Email' : 'Email'}
-            value={email}
-            onChange={handleEmailChange}
-            className={errors.email ? 'error' : ''}
+            placeholder={errors.userName ? 'Email' : 'Email'}
+            value={userName}
+            onChange={(e) => handleChange("userName", e.target.value)}
+            className={errors.userName ? 'error' : ''}
           />
           <input
             type="password"
             name="password"
             placeholder={errors.password ? 'Password' : 'Password'}
             value={password}
-            onChange={handlePasswordChange}
+            onChange={(e) => handleChange("password", e.target.value)}
             className={errors.password ? 'error' : ''}
           />
           <input
             type="password"
             name="password2"
-            placeholder={errors.password2 ? 'Repeat password' : 'Repeat password'}
-            value={password2}
-            onChange={handlePassword2Change}
-            className={errors.password2 ? 'error' : ''}
+            placeholder={errors.confirPassword ? 'Repeat password' : 'Repeat password'}
+            value={confirmPassword}
+            onChange={(e) => handleChange("confirmPassword", e.target.value)}
+            className={errors.confirmPassword ? 'error' : ''}
           />
           <button id="registerButton" type="submit">
             Register
